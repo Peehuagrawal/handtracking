@@ -5,6 +5,7 @@ import HandTrackingModule as htm
 import math
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from comtypes import CLSCTX_ALL
+import numpy as np
 
 cap = cv2.VideoCapture(0)  # Try 1 if 0 doesn't work
 
@@ -47,7 +48,11 @@ while True:
         cv2.circle(img, (cx,cy), 10, (255,0,255), cv2.FILLED)
             
         length=math.hypot(x2-x1,y2-y1)
-        print(length)
+        #print(length)
+
+        vol = np.interp(length, [50, 300], [minVol, maxVol])
+        volume.SetMasterVolumeLevel(vol, None)
+
 
         if length<=50:
             cv2.circle(img, (cx,cy), 10, (0,255,0), cv2.FILLED)
