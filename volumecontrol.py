@@ -14,6 +14,15 @@ pTime=0
 
 detector= htm.handDetector()
 
+from pycaw.pycaw import AudioUtilities
+device = AudioUtilities.GetSpeakers()
+volume = device.EndpointVolume
+print(f"Audio output: {device.FriendlyName}")
+print(f"- Muted: {bool(volume.GetMute())}")
+print(f"- Volume level: {volume.GetMasterVolumeLevel()} dB")
+print(f"- Volume range: {volume.GetVolumeRange()[0]} dB - {volume.GetVolumeRange()[1]} dB")
+volume.SetMasterVolumeLevel(-20.0, None)
+
 while True:
     success, img = cap.read()
     img= detector.findHands(img)
@@ -31,6 +40,10 @@ while True:
             
         length=math.hypot(x2-x1,y2-y1)
         print(length)
+
+        if length<=50:
+            cv2.circle(img, (cx,cy), 10, (0,255,0), cv2.FILLED)
+
 
 
     cTime= time.time()
