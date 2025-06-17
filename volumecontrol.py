@@ -30,7 +30,8 @@ volRange= volume.GetVolumeRange()
 volume.SetMasterVolumeLevel(0, None)
 minVol=volRange[0]
 maxVol=volRange[1]
-
+vol=0
+volBar=0
 
 while True:
     success, img = cap.read()
@@ -52,11 +53,14 @@ while True:
 
         vol = np.interp(length, [50, 300], [minVol, maxVol])
         volume.SetMasterVolumeLevel(vol, None)
+        volBar = np.interp(length, [50, 300], [400,150])
 
 
         if length<=50:
             cv2.circle(img, (cx,cy), 10, (0,255,0), cv2.FILLED)
 
+        cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
+        cv2.rectangle(img,(50,int(volBar)),(85,400),(0,255,0),cv2.FILLED)
 
 
     cTime= time.time()
