@@ -22,7 +22,9 @@ detector= htm.handDetector()
 devices = AudioUtilities.GetSpeakers()
 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = interface.QueryInterface(IAudioEndpointVolume)
-
+#print(f"Audio output: {device.FriendlyName}")
+#print(f"- Muted: {bool(volume.GetMute())}")
+#print(f"- Volume level: {volume.GetMasterVolumeLevel()} dB")
 print(f"- Volume range: {volume.GetVolumeRange()[0]} dB - {volume.GetVolumeRange()[1]} dB")
 
 volRange= volume.GetVolumeRange()
