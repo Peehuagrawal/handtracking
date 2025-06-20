@@ -2,9 +2,6 @@
 
 Control your system's audio volume using just your hand gestures via webcam! This Python project utilizes real-time hand tracking with OpenCV and MediaPipe to dynamically adjust the volume based on the distance between your thumb and index finger.
 
-## 📽️ Demo
-https://github.com/Peehuagrawal/handtracking/assets/86126709/c4e9b4c5-e3c1-4b2b-9c2b-67cc67911939
-
 ## 📌 Features
 
 - Real-time hand tracking using webcam
